@@ -16,8 +16,7 @@ The `main` branch covers the following topics:
 - Dependency Injection
 - Application Configuration
 - Generating OpenAPI Specification
-- Using Jest
-- mongodb Branch
+- Unit and e2e tests
 
 The `mongodb` branch is about the following topics:
 
