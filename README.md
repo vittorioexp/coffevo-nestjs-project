@@ -11,9 +11,11 @@ The REST API is about coffees and includes the following endpoints:
 
 ```
 GET http://localhost:3000/coffees/flavors?limit={limit}&offset={offset}
-
+```
+```
 GET http://localhost:3000/coffees/{id}
-
+```
+```
 POST http://localhost:3000/coffees/ 
 with JSON data in the request body:
 {
@@ -24,13 +26,15 @@ with JSON data in the request body:
     "flavor2"
   ]
 }
-
+```
+```
 PATCH http://localhost:3000/coffees/{id} 
 with JSON data in the request body:
 {
   "name": "new_name"
 }
-
+```
+```
 DELETE http://localhost:3000/coffees/{id}
 ```
 
