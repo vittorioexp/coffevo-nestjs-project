@@ -1,73 +1,86 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+NestJS project example
+=====
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NestJS-project-example
+This repository is an example application for the [NestJS framework](https://nestjs.com/) that exposes a REST API and interacts with both [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Endpoints
+---
 
-## Description
+The REST API is about coffees and includes the following endpoints:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+GET http://localhost:3000/coffees/flavors?limit=1&offset=1
 
-## Installation
+GET http://localhost:3000/coffees/10
 
-```bash
-$ npm install
-```
+POST http://localhost:3000/coffees/ with JSON data in the request body:
+{
+  "name": "name",
+  "brand": "brand",
+  "flavors": [
+    "flavor1",
+    "flavor2"
+  ]
+}
 
-## Running the app
+PATCH http://localhost:3000/coffees/1 with JSON data in the request body:
+json
+{
+  "name": "new_name"
+}
 
-```bash
-# development
-$ npm run start
+DELETE http://localhost:3000/coffees/1
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
-```
+Branches
+---
 
-## Test
+This repository has two branches: main and mongodb.
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+The main branch covers the following topics:
 
-## Support
+- Creating a REST API application
+- PostgreSQL with TypeORM
+- Dependency Injection
+- Application Configuration
+- Generating OpenAPI Specification
+- Using Jest
+- mongodb Branch
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The mongodb branch is about the following topics:
 
-## Stay in touch
+- Introducing the Mongoose Module
+- Creating a Mongoose Model
+- Using a Mongoose Model to Access MongoDB
+- Adding Pagination
+- Use Transactions
+- Adding Indexes to Schemas
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+Getting Started
+---
 
-Nest is [MIT licensed](LICENSE).
+To get started with this project, clone the repository to your local machine and install the required dependencies:
+
+git clone https://github.com/vittorioexp/NestJS-project-example.git
+
+cd NestJS-project-example
+
+docker-compose up -d
+
+npm install
+
+
+To run the application, use the following command:
+
+npm run start:dev
+
+This will start the application in development mode with hot reloading enabled.
+
+
+Contributing
+---
+
+If you'd like to contribute to this project, please create a pull request with your changes.
