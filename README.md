@@ -78,13 +78,22 @@ docker-compose up -d
 npm install
 ```
 
-Then rename the `.env.template` file to `.env`
+Then rename the `.env.template` file to `.env` and, if necessary, edit it.
 
 To run the application, use the following command:
 ```
 npm run start:dev
 ```
 This will start the application in development mode with hot reloading enabled.
+
+To run unit tests, run the following command:
+```
+npm run test:watch
+```
+To run e2e tests, run the following command:
+```
+npm run test:e2e
+```
 
 
 Contributing
