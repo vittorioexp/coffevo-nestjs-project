@@ -4,10 +4,36 @@ NestJS project example
 NestJS-project-example
 This repository is an example application for the [NestJS framework](https://nestjs.com/) that exposes a REST API and interacts with both [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/).
 
+Branches
+---
+
+This repository has two branches: `main` and `mongodb`.
+
+The `main` branch covers the following topics:
+
+- Creating a REST API application
+- PostgreSQL with TypeORM
+- Dependency Injection
+- Application Configuration
+- Generating OpenAPI Specification
+- Using Jest
+- mongodb Branch
+
+The `mongodb` branch is about the following topics:
+
+- Introducing the Mongoose Module
+- Creating a Mongoose Model
+- Using a Mongoose Model to Access MongoDB
+- Adding Pagination
+- Use Transactions
+- Adding Indexes to Schemas
+
+
+
 Endpoints
 ---
 
-The REST API is about coffees and includes the following endpoints:
+The REST API is about coffees and includes a few endpoints. Some examples follow.
 
 ```
 GET http://localhost:3000/coffees/flavors?limit={limit}&offset={offset}
@@ -37,32 +63,6 @@ with JSON data in the request body:
 ```
 DELETE http://localhost:3000/coffees/{id}
 ```
-
-Branches
----
-
-This repository has two branches: `main` and `mongodb`.
-
-
-
-The `main` branch covers the following topics:
-
-- Creating a REST API application
-- PostgreSQL with TypeORM
-- Dependency Injection
-- Application Configuration
-- Generating OpenAPI Specification
-- Using Jest
-- mongodb Branch
-
-The `mongodb` branch is about the following topics:
-
-- Introducing the Mongoose Module
-- Creating a Mongoose Model
-- Using a Mongoose Model to Access MongoDB
-- Adding Pagination
-- Use Transactions
-- Adding Indexes to Schemas
 
 
 Getting Started
