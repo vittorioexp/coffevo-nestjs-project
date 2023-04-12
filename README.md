@@ -9,11 +9,13 @@ Endpoints
 
 The REST API is about coffees and includes the following endpoints:
 
-GET http://localhost:3000/coffees/flavors?limit=1&offset=1
+```
+GET http://localhost:3000/coffees/flavors?limit={limit}&offset={offset}
 
-GET http://localhost:3000/coffees/10
+GET http://localhost:3000/coffees/{id}
 
-POST http://localhost:3000/coffees/ with JSON data in the request body:
+POST http://localhost:3000/coffees/ 
+with JSON data in the request body:
 {
   "name": "name",
   "brand": "brand",
@@ -23,14 +25,14 @@ POST http://localhost:3000/coffees/ with JSON data in the request body:
   ]
 }
 
-PATCH http://localhost:3000/coffees/1 with JSON data in the request body:
-json
+PATCH http://localhost:3000/coffees/{id} 
+with JSON data in the request body:
 {
   "name": "new_name"
 }
 
-DELETE http://localhost:3000/coffees/1
-
+DELETE http://localhost:3000/coffees/{id}
+```
 
 Branches
 ---
@@ -63,7 +65,7 @@ Getting Started
 ---
 
 To get started with this project, clone the repository to your local machine and install the required dependencies:
-
+```
 git clone https://github.com/vittorioexp/NestJS-project-example.git
 
 cd NestJS-project-example
@@ -71,12 +73,12 @@ cd NestJS-project-example
 docker-compose up -d
 
 npm install
-
+```
 
 To run the application, use the following command:
-
+```
 npm run start:dev
-
+```
 This will start the application in development mode with hot reloading enabled.
 
 
