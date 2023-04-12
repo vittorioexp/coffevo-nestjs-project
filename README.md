@@ -37,11 +37,11 @@ DELETE http://localhost:3000/coffees/{id}
 Branches
 ---
 
-This repository has two branches: main and mongodb.
+This repository has two branches: `main` and `mongodb`.
 
 
 
-The main branch covers the following topics:
+The `main` branch covers the following topics:
 
 - Creating a REST API application
 - PostgreSQL with TypeORM
@@ -51,7 +51,7 @@ The main branch covers the following topics:
 - Using Jest
 - mongodb Branch
 
-The mongodb branch is about the following topics:
+The `mongodb` branch is about the following topics:
 
 - Introducing the Mongoose Module
 - Creating a Mongoose Model
@@ -74,6 +74,8 @@ docker-compose up -d
 
 npm install
 ```
+
+Then rename the `.env.template` file to `.env`
 
 To run the application, use the following command:
 ```
