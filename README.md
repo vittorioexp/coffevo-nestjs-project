@@ -1,13 +1,15 @@
 NestJS project example
 =====
 
-NestJS-project-example
 This repository is an example application for the [NestJS framework](https://nestjs.com/) that exposes a REST API and interacts with both [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/).
 
-Branches
+
+Topics
 ---
 
-This repository has two branches: `main` and `mongodb`.
+This repository has two branches: `main` and `mongodb`. 
+The main branch focuses on developing a web application using the NestJS framework with a particular emphasis on creating controllers, services, entities, and data transfer objects. It also covers a wide range of other topics such as handling request and response data, error handling, input data validation, configuration management, middleware, guards, interceptors, and testing. The main branch provides a solid foundation for building a robust and scalable web application using NestJS, which is a popular Node.js framework for building server-side applications.
+The mongodb branch is primarily focused on implementing MongoDB functionalities and covers topics such as creating a Mongoose model, using it to access MongoDB, adding pagination, and implementing transactions. It also covers adding indexes to schemas for better performance.
 
 The main branch
 --
