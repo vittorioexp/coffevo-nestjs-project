@@ -61,7 +61,7 @@ The mongodb branch
 --
 
 
-The `mongodb` branch is about the following topics:
+The `mongodb` branch covers the following additional topics:
 
 - Create a Mongoose Model
 - Use a Mongoose Model to Access MongoDB
