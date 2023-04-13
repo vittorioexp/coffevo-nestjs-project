@@ -11,18 +11,51 @@ This repository has two branches: `main` and `mongodb`.
 
 The `main` branch covers the following topics:
 
-- Creating a REST API application
-- PostgreSQL with TypeORM
-- Dependency Injection
-- Application Configuration
-- Generating OpenAPI Specification
-- Unit and e2e tests
+- Create controllers with route parameters
+- Request body handling
+- Implement response status codes and pagination
+- Create services
+- Create user-friendly error messages
+- Use data transfer objects for input data validation
+- Auto-transform payloads to DTO instances
+- Handle malicious request data
+- Create entities
+- Use repositories to access the database
+- Establish relations between entities
+- Retrieve entities with their relations
+- Use cascading inserts and updates
+- Add pagination
+- Use transactions
+- Add indexes to entities and set up migrations
+- Use custom environment file paths
+- Use schema validation
+- Use the Config Service and custom configuration files
+- Work with configuration namespaces and partial registration
+- Configure dynamic modules asynchronously
+- Use binding techniques
+- Catch exceptions with filters
+- Protect routes with guards
+- Use metadata to build generic guards or interceptors
+- Add pointcuts with interceptors
+- Handle timeouts with interceptors
+- Create custom pipes
+- Add request logging with middleware
+- Create custom param decorators
+- Use the Swagger Module
+- Enable CLI plugin
+- Decorate model properties
+- Add example responses
+- Use tags to group resources in the OpenAPI specification
+- Create and run test suites in Jest
+- Add unit tests
+- Create an end-to-end test
+- Implement end-to-end test logic
+
 
 The `mongodb` branch is about the following topics:
 
-- Introducing the Mongoose Module
-- Creating a Mongoose Model
-- Using a Mongoose Model to Access MongoDB
+- Create a Mongoose Model
+- Use a Mongoose Model to Access MongoDB
 - Adding Pagination
 - Use Transactions
 - Adding Indexes to Schemas
