@@ -9,6 +9,9 @@ Branches
 
 This repository has two branches: `main` and `mongodb`.
 
+The main branch
+--
+
 The `main` branch covers the following topics:
 
 - Create controllers with route parameters
@@ -50,6 +53,10 @@ The `main` branch covers the following topics:
 - Add unit tests
 - Create an end-to-end test
 - Implement end-to-end test logic
+
+
+The mongodb branch
+--
 
 
 The `mongodb` branch is about the following topics:
