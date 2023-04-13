@@ -1,7 +1,7 @@
 NestJS project example
 =====
 
-This repository is an example application for the [NestJS framework](https://nestjs.com/) that exposes a REST API and interacts with both [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/).
+This repository is an example application for the [NestJS framework](https://nestjs.com/) that exposes a REST API and interacts with both [PostgreSQL](https://www.postgresql.org/) and [MongoDB](https://www.mongodb.com/). The project covers a wide range of topics such as creating controllers, services, entities, data transfer objects, handling request and response data, error handling, input data validation, configuration management, middleware, guards, interceptors, testing, creating a Mongoose model, using it to access MongoDB, adding pagination, and implementing transactions.
 
 
 Topics
