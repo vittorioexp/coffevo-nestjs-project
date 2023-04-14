@@ -18,7 +18,7 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
-      .set('Authorization', process.env.API_KEY)
+      .set('Authorization', process.env.JWT_SECRET)
       .expect(200)
       .expect('Hello NestJS!');
   });
