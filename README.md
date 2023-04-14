@@ -77,13 +77,29 @@ Endpoints
 The REST API is about coffees and includes a few endpoints. Some examples follow.
 
 ```
+POST http://localhost:3000/auth/login
+with JSON data in the request body:
+{
+    "username": "vittorioexp",
+    "password": "psw"
+}
+This will return an authorization token.
+```
+```
+GET http://localhost:3000/auth/profile
+with authorization token.
+```
+```
 GET http://localhost:3000/coffees/flavors?limit={limit}&offset={offset}
+with authorization token.
 ```
 ```
 GET http://localhost:3000/coffees/{id}
+with authorization token.
 ```
 ```
 POST http://localhost:3000/coffees/ 
+with authorization token and
 with JSON data in the request body:
 {
   "name": "name",
@@ -96,6 +112,7 @@ with JSON data in the request body:
 ```
 ```
 PATCH http://localhost:3000/coffees/{id} 
+with authorization token and
 with JSON data in the request body:
 {
   "name": "new_name"
@@ -103,6 +120,7 @@ with JSON data in the request body:
 ```
 ```
 DELETE http://localhost:3000/coffees/{id}
+with authorization token.
 ```
 
 
