@@ -99,7 +99,7 @@ with authorization token.
 ```
 ```
 POST http://localhost:3000/coffees/ 
-with authorization token and
+with authorization token and a user having admin privileges
 with JSON data in the request body:
 {
   "name": "name",
@@ -112,7 +112,7 @@ with JSON data in the request body:
 ```
 ```
 PATCH http://localhost:3000/coffees/{id} 
-with authorization token and
+with authorization token and a user having admin privileges
 with JSON data in the request body:
 {
   "name": "new_name"
@@ -120,7 +120,7 @@ with JSON data in the request body:
 ```
 ```
 DELETE http://localhost:3000/coffees/{id}
-with authorization token.
+with authorization token and a user having admin privileges.
 ```
 
 
@@ -145,6 +145,15 @@ To run the application, use the following command:
 npm run start:dev
 ```
 This will start the application in development mode with hot reloading enabled.
+
+Then connect to the database and enter the following SQL statements to create one admin, one user, and a two coffees:
+```
+insert into "user" ("username", "password", "role") values ('admin', 'admin', 'admin');
+insert into "user" ("username", "password", "role") values ('user', 'user', 'user');
+insert into "coffee" ("name", "brand", "inventorId") values ('star trucks coffee', 'star trucks ltd', 1);
+insert into "coffee" ("name", "brand", "inventorId") values ('cheap coffee', 'cheap ltd', 2);
+```
+
 
 To run unit tests, run the following command:
 ```
