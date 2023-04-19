@@ -22,6 +22,7 @@
     "posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db"
   },
   "dependencies": {
+    "@casl/ability": "^6.4.0",
     "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",

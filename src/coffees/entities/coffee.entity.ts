@@ -1,19 +1,29 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Flavor } from "./flavor.entity";
+import { User } from "../../users/entities/user.entity";
 
 @Entity()
 export class Coffee {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: false })
     name: string;
 
-    @Column()
+    @Column({ nullable: false })
     brand: string;
 
     @Column({default: 0})
     reccomendations: number;
+    
+    @Column({ default: false })
+    isPublished: boolean;
+
+    @ManyToOne(
+        type => User,
+        user => user.coffees
+    )
+    inventor: User;
 
     @JoinTable() // 👈 Join the 2 tables - only the OWNER-side does this
     @ManyToMany(
@@ -22,6 +32,6 @@ export class Coffee {
         {
             cascade: true
         }
-    ) // 👈
+    ) 
     flavors: Flavor[];
 }

@@ -1,4 +1,10 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Coffee } from "../../coffees/entities/coffee.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
+export enum Role {
+    User = 'user',
+    Admin = 'admin',
+  }
 
 @Entity()
 export class User {
@@ -10,4 +16,13 @@ export class User {
 
     @Column({ nullable: false })
     password: string;
+
+    @Column({ nullable: false, enum: Role, default: Role.User })
+    role: Role;
+
+    @OneToMany(
+        type => Coffee,
+        coffee => coffee.inventor
+    )
+    coffees: Coffee[]
 }
