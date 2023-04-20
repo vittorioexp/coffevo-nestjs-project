@@ -15,31 +15,33 @@ export class CoffeesController {
     constructor(private readonly coffeeService: CoffeesService) {}
 
     @Get('flavors')
+    @Roles([Role.Admin, Role.User])
     @ApiForbiddenResponse({ description: 'Forbidden.' })
     async findAll(@Protocol('https') protocol: string, @Query() paginationQuery: PaginationQueryDto) {
         return this.coffeeService.findAll(paginationQuery);
     }
 
     @Get(':id')
+    @Roles([Role.Admin, Role.User])
     findOne(@Param('id') id: string) {
         const coffee = this.coffeeService.findOne(id);
         return coffee;
     }
 
     @Post()
-    @Roles(Role.Admin)
+    @Roles([Role.Admin])
     create(@Body() createCoffeeDto: CreateCoffeeDto) {
         return this.coffeeService.create(createCoffeeDto);
     }
 
     @Patch(':id')
-    @Roles(Role.Admin)
+    @Roles([Role.Admin])
     update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
         return this.coffeeService.update(id, updateCoffeeDto);
     }
 
     @Delete(':id')
-    @Roles(Role.Admin)
+    @Roles([Role.Admin])
     remove(@Param('id') id:string) {
         return this.coffeeService.remove(id);
     }
