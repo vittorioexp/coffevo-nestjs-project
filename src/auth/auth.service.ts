@@ -16,9 +16,6 @@ export class AuthService {
 
     const encryptedPassword = crypto.createHash('sha256').update(pwd).digest('hex');
 
-    console.log({ encryptedPassword });
-    console.log({ user });
-
     if (user?.password !== encryptedPassword) {
       throw new UnauthorizedException();
     }
