@@ -46,6 +46,10 @@ The `main` branch covers the following topics:
 - Create custom pipes
 - Add request logging with middleware
 - Create custom param decorators
+- Implement URI Versioning
+- Use ClassSerializerInterceptor
+- Implement a role-based access control
+- Use Helmet, Express cors, and rate limiting
 - Use the Swagger Module
 - Enable CLI plugin
 - Decorate model properties
@@ -77,7 +81,7 @@ Endpoints
 The REST API is about coffees and includes a few endpoints. Some examples follow.
 
 ```
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/v1/auth/login
 with JSON data in the request body:
 {
     "username": "user",
@@ -91,19 +95,19 @@ or
 This will return an authorization token.
 ```
 ```
-GET http://localhost:3000/auth/profile
+GET http://localhost:3000/v1/auth/profile
 with authorization token.
 ```
 ```
-GET http://localhost:3000/coffees/flavors?limit={limit}&offset={offset}
+GET http://localhost:3000/v1/coffees/flavors?limit={limit}&offset={offset}
 with authorization token.
 ```
 ```
-GET http://localhost:3000/coffees/{id}
+GET http://localhost:3000/v1/coffees/{id}
 with authorization token.
 ```
 ```
-POST http://localhost:3000/coffees/ 
+POST http://localhost:3000/v1/coffees/ 
 with authorization token and a user having admin privileges
 with JSON data in the request body:
 {
@@ -116,7 +120,7 @@ with JSON data in the request body:
 }
 ```
 ```
-PATCH http://localhost:3000/coffees/{id} 
+PATCH http://localhost:3000/v1/coffees/{id} 
 with authorization token and a user having admin privileges
 with JSON data in the request body:
 {
@@ -124,7 +128,7 @@ with JSON data in the request body:
 }
 ```
 ```
-DELETE http://localhost:3000/coffees/{id}
+DELETE http://localhost:3000/v1/coffees/{id}
 with authorization token and a user having admin privileges.
 ```
 
