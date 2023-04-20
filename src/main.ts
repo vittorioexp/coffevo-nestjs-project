@@ -5,10 +5,13 @@ import { HttpExceptionFilter } from './common/filters/http-exception/http-except
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response/wrap-response.interceptor';
 import { TimeoutInterceptor } from './common/interceptors/timeout/timeout.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // This must come before other calls to app.use() or setup functions that may call app.use()
+  app.use(helmet());
 
   app.useGlobalPipes(
     new ValidationPipe({
