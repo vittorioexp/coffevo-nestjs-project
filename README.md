@@ -80,8 +80,13 @@ The REST API is about coffees and includes a few endpoints. Some examples follow
 POST http://localhost:3000/auth/login
 with JSON data in the request body:
 {
-    "username": "vittorioexp",
-    "password": "psw"
+    "username": "user",
+    "password": "user"
+}
+or
+{
+    "username": "admin",
+    "password": "admin"
 }
 This will return an authorization token.
 ```
@@ -148,8 +153,8 @@ This will start the application in development mode with hot reloading enabled.
 
 Then connect to the database and enter the following SQL statements to create one admin, one user, and a two coffees:
 ```
-insert into "user" ("username", "password", "role") values ('admin', 'admin', 'admin');
-insert into "user" ("username", "password", "role") values ('user', 'user', 'user');
+insert into "user" ("username", "password", "role") values ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
+insert into "user" ("username", "password", "role") values ('user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user');
 insert into "coffee" ("name", "brand", "inventorId") values ('star trucks coffee', 'star trucks ltd', 1);
 insert into "coffee" ("name", "brand", "inventorId") values ('cheap coffee', 'cheap ltd', 2);
 ```
