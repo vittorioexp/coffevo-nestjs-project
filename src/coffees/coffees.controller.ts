@@ -10,7 +10,7 @@ import { Role } from '../users/entities/user.entity';
 
 
 @ApiTags('coffees')
-@Controller('coffees')
+@Controller({ path: 'coffees', version: '1' })
 export class CoffeesController {
     constructor(private readonly coffeeService: CoffeesService) {}
 

@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception/http-exception.filter';
@@ -12,6 +12,11 @@ async function bootstrap() {
 
   // This must come before other calls to app.use() or setup functions that may call app.use()
   app.use(helmet());
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
+  
 
   app.useGlobalPipes(
     new ValidationPipe({
