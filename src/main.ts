@@ -13,6 +13,8 @@ async function bootstrap() {
   // This must come before other calls to app.use() or setup functions that may call app.use()
   app.use(helmet());
 
+  app.enableCors();
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
