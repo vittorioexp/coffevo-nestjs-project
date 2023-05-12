@@ -162,6 +162,7 @@ insert into "user" ("username", "password", "role") values ('user', '04f8996da76
 insert into "coffee" ("name", "brand", "inventorId") values ('star trucks coffee', 'star trucks ltd', 1);
 insert into "coffee" ("name", "brand", "inventorId") values ('cheap coffee', 'cheap ltd', 2);
 ```
+Now you're ready to hit the endpoints of the application! See the section above for details.
 
 
 To run unit tests, run the following command:
