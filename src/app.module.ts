@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { RegistrationModule } from './registration/registration.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { APP_GUARD } from '@nestjs/core';
     CommonModule,
     AuthModule,
     UsersModule,
+    RegistrationModule,
   ],
   controllers: [AppController],
   providers: [

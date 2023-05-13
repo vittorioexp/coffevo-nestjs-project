@@ -8,7 +8,7 @@ Topics
 ---
 
 This repository has two branches: `main` and `mongodb`. 
-The `main` branch focuses on developing a web application using the NestJS framework with a particular emphasis on creating controllers, services, entities, and data transfer objects. It also covers a wide range of other topics such as handling request and response data, error handling, input data validation, configuration management, middleware, guards, interceptors, and testing. Furthermore it provides a solid foundation for building a robust and scalable web application using NestJS, which is a popular Node.js framework for building server-side applications.
+The `main` branch focuses on developing a web application using the NestJS framework with a particular emphasis on creating controllers, services, entities, and data transfer objects. It also covers a wide range of other topics such as handling request and response data, error handling, input data validation, configuration management, middleware, guards, interceptors, authentication, and testing. Furthermore it provides a solid foundation for building a robust and scalable web application using NestJS, which is a popular Node.js framework for building server-side applications.
 The `mongodb` branch is primarily focused on implementing MongoDB functionalities and covers topics such as creating a Mongoose model, using it to access MongoDB, adding pagination, and implementing transactions. It also covers adding indexes to schemas for better performance.
 
 The main branch
@@ -75,22 +75,64 @@ The `mongodb` branch covers the following additional topics:
 
 
 
+Getting Started
+---
+
+To get started with this project, clone the repository to your local machine and install the required dependencies:
+```
+git clone https://github.com/vittorioexp/NestJS-project-example.git
+
+cd NestJS-project-example
+
+docker-compose up -d
+
+npm install
+```
+
+Then rename the `.env.template` file to `.env` and, if necessary, edit it.
+
+To run the application, use the following command:
+```
+npm run start:dev
+```
+This will start the application in development mode with hot reloading enabled.
+
+Then connect to the database and enter the following SQL statements to create one admin, one user, and a two coffees:
+```
+insert into "user" ("username", "password", "role") values ('admin', '60fe74406e7f353ed979f350f2fbb6a2e8690a5fa7d1b0c32983d1d8b3f95f67', 'admin');
+insert into "user" ("username", "password", "role") values ('user', 'bd5cf8347e036cabe6cd37323186a02ef6c3589d19daaee31eeb2ae3b1507ebe', 'user');
+
+insert into "coffee" ("name", "brand", "inventorId") values ('star trucks coffee', 'star trucks ltd', 1);
+insert into "coffee" ("name", "brand", "inventorId") values ('cheap coffee', 'cheap ltd', 2);
+```
+Now you're ready to hit the endpoints of the application!
+
+
+
 Endpoints
 ---
 
 The REST API is about coffees and includes a few endpoints. Some examples follow.
-
+```
+POST http://localhost:3000/v1/registration/do
+with JSON data in the request body:
+{
+    "username": "user",
+    "password": "User1234"
+}
+This will return an authorization token.
+```
 ```
 POST http://localhost:3000/v1/auth/login
 with JSON data in the request body:
 {
     "username": "user",
-    "password": "user"
+    "password": "User1234"
 }
 or
 {
     "username": "admin",
-    "password": "admin"
+    "password": "Admin1234"
 }
 This will return an authorization token.
 ```
@@ -133,36 +175,10 @@ with authorization token and a user having admin privileges.
 ```
 
 
-Getting Started
+
+
+Run tests
 ---
-
-To get started with this project, clone the repository to your local machine and install the required dependencies:
-```
-git clone https://github.com/vittorioexp/NestJS-project-example.git
-
-cd NestJS-project-example
-
-docker-compose up -d
-
-npm install
-```
-
-Then rename the `.env.template` file to `.env` and, if necessary, edit it.
-
-To run the application, use the following command:
-```
-npm run start:dev
-```
-This will start the application in development mode with hot reloading enabled.
-
-Then connect to the database and enter the following SQL statements to create one admin, one user, and a two coffees:
-```
-insert into "user" ("username", "password", "role") values ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
-insert into "user" ("username", "password", "role") values ('user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 'user');
-insert into "coffee" ("name", "brand", "inventorId") values ('star trucks coffee', 'star trucks ltd', 1);
-insert into "coffee" ("name", "brand", "inventorId") values ('cheap coffee', 'cheap ltd', 2);
-```
-
 
 To run unit tests, run the following command:
 ```
@@ -172,6 +188,14 @@ To run e2e tests, run the following command:
 ```
 npm run test:e2e
 ```
+
+
+Future developments
+---
+- Users can create coffees, modify/delete their own coffees
+- Admin users can modify/delete all coffees
+- Standard users can vote on all coffees
+- Possibility to retrieve the list of coffees sorted by votes
 
 
 Contributing
