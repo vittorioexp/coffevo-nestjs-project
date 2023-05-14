@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, SelectQueryBuilder } from "typeorm";
 import { Flavor } from "./flavor.entity";
 import { User } from "../../users/entities/user.entity";
 
@@ -34,4 +34,18 @@ export class Coffee {
         }
     ) 
     flavors: Flavor[];
+
+    // Add a static method to modify the SELECT query when fetching the coffee entity
+    static withRelations(query: SelectQueryBuilder<Coffee>): SelectQueryBuilder<Coffee> {
+        return query.leftJoinAndSelect("coffee.inventor", "inventor").select([
+            "coffee.id",
+            "coffee.name",
+            "coffee.brand",
+            "coffee.recommendations",
+            "coffee.isPublished",
+            "flavors",
+            "inventor.id",
+            "inventor.username",
+        ]);
+    }
 }

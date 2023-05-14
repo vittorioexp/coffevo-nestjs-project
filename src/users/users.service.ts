@@ -13,6 +13,15 @@ export class UsersService {
     }
 
     async findOne(username: string) {
-        return this.userRepository.findOne({ where: { username: username }})
+        const user = await this.userRepository.findOne({ 
+            where: { username: username }, 
+            select: { id: true, username: true, role: true },
+        });
+        return user;
+    }
+
+    async findOneWithPassword(username: string) {
+        const user = await this.userRepository.findOne({ where: { username: username }})
+        return user;
     }
 }

@@ -141,7 +141,7 @@ GET http://localhost:3000/v1/auth/profile
 with authorization token.
 ```
 ```
-GET http://localhost:3000/v1/coffees/flavors?limit={limit}&offset={offset}
+GET http://localhost:3000/v1/coffees?limit={limit}&offset={offset}
 with authorization token.
 ```
 ```

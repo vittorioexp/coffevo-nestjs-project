@@ -9,6 +9,7 @@ import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity/event.entity';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class CoffeesService {
@@ -17,6 +18,7 @@ export class CoffeesService {
     private readonly coffeeRepository: Repository<Coffee>,
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
+    private readonly usersService: UsersService,
     private readonly dataSource: DataSource,
     private readonly configService: ConfigService,
     @Inject(coffeesConfig.KEY)
@@ -25,11 +27,19 @@ export class CoffeesService {
     console.log(coffeesConfiguration.foo);
   }
 
-  findAll(paginationQuery: PaginationQueryDto) {
+  async findAll(paginationQuery: PaginationQueryDto) {
     const {limit, offset} = paginationQuery;
     return this.coffeeRepository.find({
       relations: {
         flavors: true,
+        inventor: true,
+      },
+      select: {
+        inventor: {
+          id: true,
+          username: true,
+          role: true,
+        },
       },
       skip: offset,
       take: limit,
@@ -43,6 +53,14 @@ export class CoffeesService {
       },
       relations: {
         flavors: true,
+        inventor: true,
+      },
+      select: {
+        inventor: {
+          id: true,
+          username: true,
+          role: true,
+        },
       },
     });
 
@@ -52,7 +70,8 @@ export class CoffeesService {
     return coffee;
   }
 
-  async create(createCoffeeDto: CreateCoffeeDto) {
+  async create(createCoffeeDto: CreateCoffeeDto, inventor: any) {
+
     const flavors = await Promise.all(
       createCoffeeDto.flavors.map((name) => this.preloadFlavorByName(name)),
     );
@@ -60,6 +79,7 @@ export class CoffeesService {
     const coffee = this.coffeeRepository.create({
       ...createCoffeeDto,
       flavors,
+      inventor: inventor,
     });
     return this.coffeeRepository.save(coffee);
   }

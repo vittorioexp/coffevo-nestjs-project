@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async signIn(username: string, pwd: string) {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOneWithPassword(username);
 
     const encryptedPassword = crypto.createHash('sha256').update(pwd).digest('hex');
 
