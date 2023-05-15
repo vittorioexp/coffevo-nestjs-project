@@ -1,6 +1,7 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, SelectQueryBuilder } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Flavor } from "./flavor.entity";
 import { User } from "../../users/entities/user.entity";
+import { Rate } from "./rate.entity";
 
 @Entity()
 export class Coffee {
@@ -13,9 +14,13 @@ export class Coffee {
     @Column({ nullable: false })
     brand: string;
 
-    @Column({default: 0})
-    reccomendations: number;
-    
+    @OneToMany(
+        type => Rate,
+        rate => rate.coffee,
+        { cascade: true }
+    )
+    rates: Rate[];
+
     @Column({ default: false })
     isPublished: boolean;
 
@@ -35,17 +40,4 @@ export class Coffee {
     ) 
     flavors: Flavor[];
 
-    // Add a static method to modify the SELECT query when fetching the coffee entity
-    static withRelations(query: SelectQueryBuilder<Coffee>): SelectQueryBuilder<Coffee> {
-        return query.leftJoinAndSelect("coffee.inventor", "inventor").select([
-            "coffee.id",
-            "coffee.name",
-            "coffee.brand",
-            "coffee.recommendations",
-            "coffee.isPublished",
-            "flavors",
-            "inventor.id",
-            "inventor.username",
-        ]);
-    }
 }

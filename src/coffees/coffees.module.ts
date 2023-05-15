@@ -7,11 +7,12 @@ import { Flavor } from './entities/flavor.entity';
 import { ConfigModule } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
 import { UsersModule } from 'src/users/users.module';
+import { Rate } from './entities/rate.entity';
 
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Coffee, Flavor, Event]), 
+        TypeOrmModule.forFeature([Coffee, Flavor, Rate, Event]), 
         ConfigModule.forFeature(coffeesConfig),
         UsersModule,
     ],

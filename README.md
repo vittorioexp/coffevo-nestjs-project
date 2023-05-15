@@ -150,7 +150,7 @@ with authorization token.
 ```
 ```
 POST http://localhost:3000/v1/coffees/ 
-with authorization token and a user having admin privileges
+with authorization token and
 with JSON data in the request body:
 {
   "name": "name",
@@ -163,7 +163,7 @@ with JSON data in the request body:
 ```
 ```
 PATCH http://localhost:3000/v1/coffees/{id} 
-with authorization token and a user having admin privileges
+with authorization token and
 with JSON data in the request body:
 {
   "name": "new_name"
@@ -171,7 +171,7 @@ with JSON data in the request body:
 ```
 ```
 DELETE http://localhost:3000/v1/coffees/{id}
-with authorization token and a user having admin privileges.
+with authorization token.
 ```
 
 
@@ -192,10 +192,13 @@ npm run test:e2e
 
 Future developments
 ---
-- Users can create coffees, modify/delete their own coffees
-- Admin users can modify/delete all coffees
-- Standard users can vote on all coffees
-- Possibility to retrieve the list of coffees sorted by votes
+- Only the coffees in the "public" state can be voted on.
+- Provide the ability to retrieve a list of coffees sorted by the number of votes they have received.
+- Each coffee can have an associated photo.
+- Each review can include a photo.
+- Enable the option to order a coffee for takeaway or delivery, including the order date and time as well as the delivery address.
+- Users can only vote after placing an order.
+- Implement an endpoint that returns the available prizes and another endpoint to finalize the contest, associating prizes with users.
 
 
 Contributing

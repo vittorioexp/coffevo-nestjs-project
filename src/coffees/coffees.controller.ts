@@ -8,6 +8,7 @@ import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../common/decorators/roles.decorator';
 import { Role } from '../users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
+import { RateCoffeeDto } from './dto/rate-coffee.dto';
 
 @ApiTags('coffees')
 @Controller({ path: 'coffees', version: '1' })
@@ -85,4 +86,11 @@ export class CoffeesController {
         }
     }
 
+    @Post(':id/rate')
+    @Roles([Role.Admin, Role.User])
+    async rateCoffee(@Param('id') coffeeId: string, @Body() rateCoffeeDto: RateCoffeeDto, @Req() request: any) {
+
+        const username = request.user.username;
+        return await this.coffeeService.rateCoffee(coffeeId, username, rateCoffeeDto);
+    }
 }

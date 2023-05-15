@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 import { DataSource, Repository } from 'typeorm';
@@ -10,6 +10,9 @@ import { Event } from '../events/entities/event.entity/event.entity';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
 import { UsersService } from 'src/users/users.service';
+import { ForbiddenError } from '@casl/ability';
+import { Rate } from './entities/rate.entity';
+import { RateCoffeeDto } from './dto/rate-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -18,6 +21,8 @@ export class CoffeesService {
     private readonly coffeeRepository: Repository<Coffee>,
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
+    @InjectRepository(Rate)
+    private readonly rateRepository: Repository<Rate>,
     private readonly usersService: UsersService,
     private readonly dataSource: DataSource,
     private readonly configService: ConfigService,
@@ -33,6 +38,7 @@ export class CoffeesService {
       relations: {
         flavors: true,
         inventor: true,
+        rates: true,
       },
       select: {
         inventor: {
@@ -54,6 +60,7 @@ export class CoffeesService {
       relations: {
         flavors: true,
         inventor: true,
+        rates: true,
       },
       select: {
         inventor: {
@@ -114,7 +121,7 @@ export class CoffeesService {
     await queryRunner.startTransaction();
 
     try {
-      coffee.reccomendations++;
+      //coffee.reccomendations++;
 
       const reccomendEvent = new Event();
       reccomendEvent.name = 'reccomend_coffee';
@@ -137,5 +144,45 @@ export class CoffeesService {
       return existingFlavor;
     }
     return this.flavorRepository.create({ name });
+  }
+
+  async rateCoffee(coffeeId: string, username: string, rateCoffeeDto: RateCoffeeDto) {
+
+    // Check if the coffee exists, otherwise throw the usual exception
+    await this.findOne(coffeeId)
+
+    const rates = await this.rateRepository.find({ 
+      where: { 
+        coffee: { 
+          id: +coffeeId
+        }
+      }, 
+      relations: {
+        author: true,
+      },
+      select: {
+        author: {
+          username: true
+        }
+      },
+    });
+
+    const userAlreadyRated = rates.find((rate) => rate?.author.username == username);
+
+    // if the user hasn't already rated the coffee, add the new rate, else throw an exception
+    if (!userAlreadyRated) {      
+      const user = await this.usersService.findOne(username)
+
+      await this.rateRepository.save({
+        author: { id: +user.id },
+        coffee: { id: +coffeeId },
+        rate: rateCoffeeDto.rate,
+        description: rateCoffeeDto?.description
+      });
+
+      return await this.findOne(coffeeId);
+    } else {
+      throw new BadRequestException("User already rated this coffee");
+    }
   }
 }
