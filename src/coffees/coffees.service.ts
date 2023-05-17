@@ -52,6 +52,24 @@ export class CoffeesService {
     });
   }
 
+  async findAllByRate(paginationQuery: PaginationQueryDto) {
+    const { offset, limit } = paginationQuery;
+    return this.coffeeRepository.createQueryBuilder('coffee')
+      .leftJoin('coffee.rates', 'rate')
+      .select([
+        'coffee.id AS id',
+        'coffee.name AS name',
+        'coffee.brand AS brand',
+        'AVG(rate.rate) as avg_rate', // Calculate average of rates.rate
+      ])
+      .groupBy('coffee.id')
+      .orderBy('AVG(rate.rate) IS NULL', 'ASC') // Move rows with null average rate to the end
+      .addOrderBy('AVG(rate.rate)', 'DESC') // Order by the calculated average rate in descending order
+      .offset(offset)
+      .limit(limit)
+      .getRawMany();
+  }
+
   async findOne(id: string) {
     const coffee = await this.coffeeRepository.findOne({
       where: {
@@ -149,7 +167,11 @@ export class CoffeesService {
   async rateCoffee(coffeeId: string, username: string, rateCoffeeDto: RateCoffeeDto) {
 
     // Check if the coffee exists, otherwise throw the usual exception
-    await this.findOne(coffeeId)
+    const coffee = await this.findOne(coffeeId)
+
+    if (!coffee.isPublished) {
+      throw new BadRequestException("Unpublished coffees cannot be rated");
+    }
 
     const rates = await this.rateRepository.find({ 
       where: { 

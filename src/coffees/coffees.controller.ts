@@ -25,6 +25,12 @@ export class CoffeesController {
         return this.coffeeService.findAll(paginationQuery);
     }
 
+    @Get('by-rate')
+    @Roles([Role.Admin, Role.User])
+    async findAllByRate(@Query() paginationQuery: PaginationQueryDto) {
+        return this.coffeeService.findAllByRate(paginationQuery);
+    }
+
     @Get(':id')
     @Roles([Role.Admin, Role.User])
     async findOne(@Param('id') id: string) {

@@ -113,6 +113,8 @@ Endpoints
 ---
 
 The REST API is about coffees and includes a few endpoints. Some examples follow.
+
+### User registration
 ```
 POST http://localhost:3000/v1/registration/do
 with JSON data in the request body:
@@ -122,6 +124,8 @@ with JSON data in the request body:
 }
 This will return an authorization token.
 ```
+
+### Login
 ```
 POST http://localhost:3000/v1/auth/login
 with JSON data in the request body:
@@ -136,18 +140,26 @@ or
 }
 This will return an authorization token.
 ```
+
+### Get profile info
 ```
 GET http://localhost:3000/v1/auth/profile
 with authorization token.
 ```
+
+### Get the list of coffees
 ```
 GET http://localhost:3000/v1/coffees?limit={limit}&offset={offset}
 with authorization token.
 ```
+
+### Get a coffee
 ```
 GET http://localhost:3000/v1/coffees/{id}
 with authorization token.
 ```
+
+### Create a coffee
 ```
 POST http://localhost:3000/v1/coffees/ 
 with authorization token and
@@ -161,6 +173,8 @@ with JSON data in the request body:
   ]
 }
 ```
+
+### Edit a coffee
 ```
 PATCH http://localhost:3000/v1/coffees/{id} 
 with authorization token and
@@ -169,8 +183,27 @@ with JSON data in the request body:
   "name": "new_name"
 }
 ```
+
+### Delete a coffee
 ```
 DELETE http://localhost:3000/v1/coffees/{id}
+with authorization token.
+```
+
+### Rate a coffee
+```
+POST http://localhost:3000/v1/coffees/{id}/rate
+with authorization token and
+with JSON data in the request body:
+{
+    "rate": 5,
+    "description": "Nice coffee!"
+}
+```
+
+### Get the list of coffees by rate
+```
+GET http://localhost:3000/v1/coffees/by-rate?limit={limit}&offset={offset}
 with authorization token.
 ```
 
@@ -192,8 +225,6 @@ npm run test:e2e
 
 Future developments
 ---
-- Only the coffees in the "public" state can be voted on.
-- Provide the ability to retrieve a list of coffees sorted by the number of votes they have received.
 - Each coffee can have an associated photo.
 - Each review can include a photo.
 - Enable the option to order a coffee for takeaway or delivery, including the order date and time as well as the delivery address.
