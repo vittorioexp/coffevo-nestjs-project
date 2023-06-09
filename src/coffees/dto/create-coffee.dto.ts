@@ -17,4 +17,8 @@ export class CreateCoffeeDto {
     @ApiProperty({ example: [] })
     @IsString({each: true})
     readonly flavors: string[];
+
+    @ApiProperty({ type: 'string', format: 'binary', required: true })
+    readonly photo: any; 
+
 }

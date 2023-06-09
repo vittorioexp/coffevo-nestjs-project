@@ -24,6 +24,9 @@ export class Coffee {
     @Column({ default: false })
     isPublished: boolean;
 
+    @Column({ type: "bytea", nullable: true })
+    photo: Buffer;
+
     @ManyToOne(
         type => User,
         user => user.coffees

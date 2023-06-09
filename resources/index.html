@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coffee List</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+    }
+
+    .coffee-image {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="coffee-list"></div>
+
+  <script>
+    // Make HTTP request
+    fetch('http://localhost:3000/v1/coffees/', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjo2LCJpYXQiOjE2ODQzMzYxMDIsImV4cCI6MTY4NDMzNjcwMn0.mrfdIFRxiZHVdju0k7JBrvtS5TxONTRueztbDJ2GPnU'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const coffeeListElement = document.getElementById('coffee-list');
+      data.data.forEach(coffee => {
+        // Create card element
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+
+        // Convert buffer data to base64 image URL
+        const photoData = coffee.photo?.data;
+        let photoUrl;
+        if (photoData) {
+          const photoBuffer = new Uint8Array(photoData);
+          const photoBlob = new Blob([photoBuffer], { type: 'image/jpeg' });
+          photoUrl = URL.createObjectURL(photoBlob);
+        } else {
+          photoUrl = ""
+        }
+
+        // Populate card content
+        cardElement.innerHTML = `
+          <h3>${coffee.name}</h3>
+          <p>Brand: ${coffee.brand}</p>
+          <p>Published: ${coffee.isPublished ? 'Yes' : 'No'}</p>
+          <img class="coffee-image" src="${photoUrl}" alt="Coffee Photo">
+          <p>Flavors: ${coffee.flavors.map(flavor => flavor.name).join(', ')}</p>
+          <p>Inventor: ${coffee.inventor.username}</p>
+        `;
+
+        // Append card to coffee list
+        coffeeListElement.appendChild(cardElement);
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  </script>
+</body>
+</html>

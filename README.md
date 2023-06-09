@@ -26,6 +26,7 @@ The `main` branch covers the following topics:
 - Handle malicious request data
 - Create entities
 - Use repositories to access the database
+- File upload
 - Establish relations between entities
 - Retrieve entities with their relations
 - Use cascading inserts and updates
@@ -172,6 +173,7 @@ with JSON data in the request body:
     "flavor2"
   ]
 }
+Alternatively, you can use form-data in the request body to include a file in the 'photo' field.
 ```
 
 ### Edit a coffee
@@ -182,6 +184,7 @@ with JSON data in the request body:
 {
   "name": "new_name"
 }
+Alternatively, you can use form-data in the request body to include a file in the 'photo' field.
 ```
 
 ### Delete a coffee
@@ -225,7 +228,6 @@ npm run test:e2e
 
 Future developments
 ---
-- Each coffee can have an associated photo.
 - Each review can include a photo.
 - Enable the option to order a coffee for takeaway or delivery, including the order date and time as well as the delivery address.
 - Users can only vote after placing an order.
